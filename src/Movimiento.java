@@ -18,6 +18,7 @@ public class Movimiento {
         if (posFinal==null || posInicial==null) {
             return false;
         }
+
         if (posFinal.getColumna() == posInicial.getColumna()) {
             return true;
         }else{
