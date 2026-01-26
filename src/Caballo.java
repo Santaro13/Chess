@@ -10,9 +10,9 @@ public class Caballo extends Pieza {
         if (mov.esDiagonal()) {
             return false;
         }
-        if (mov.saltoVertical() == 2 && mov.saltoHorizontal() == 1 || mov.saltoVertical() == 1 && mov.saltoHorizontal() == 2) {
+        if (Math.abs(mov.saltoVertical()) == 2 && Math.abs(mov.saltoHorizontal()) == 1 || Math.abs(mov.saltoVertical()) == 1 && Math.abs(mov.saltoHorizontal()) == 2){
             return true;
-        } else {
+        }else {
             return false;
         }
     }

@@ -63,5 +63,11 @@ public class Movimiento {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Movimiento{" +
+                "posInicial=" + posInicial +
+                ", posFinal=" + posFinal +
+                '}';
+    }
 }

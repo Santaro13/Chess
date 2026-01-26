@@ -2,7 +2,7 @@ public class Alfil extends Pieza {
 
     public Alfil(int color) {
         super(color);
-        this.setNombre("alfil");
+        this.setNombre("Alfil");
     }
 
     @Override

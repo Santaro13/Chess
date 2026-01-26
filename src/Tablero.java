@@ -54,7 +54,7 @@ public class Tablero {
             System.out.println();
         }
 
-        // Imprime etiquetas
+        // marco
         System.out.print("   ");
         for (char letra = 'a'; letra <= 'h'; letra++) {
             System.out.print(letra + "     ");
@@ -83,19 +83,29 @@ public class Tablero {
 
     }
 
-    public void quitaPieza(int fila, int columna){
-        tablero[fila][columna]=null;
+    public void quitaPieza(int fila, int columna) {
+        tablero[fila][columna] = null;
     }
 
-    public void quitaPieza(Pieza figura, Posicion pos){
-        ponPieza(figura, pos.getFila(), pos.getColumna());
+    public void quitaPieza(Pieza figura, Posicion pos) {
+        quitaPieza(pos.getFila(), pos.getColumna());
     }
 
-    public Pieza devuelvePieza( int fila, int columna){
+    public void moverPieza(Movimiento mov) {
+        Posicion origen = mov.posInicial;
+        Posicion destino = mov.posFinal;
+
+        Pieza pieza = tablero[origen.getFila()][origen.getColumna()];
+
+        quitaPieza(origen.getFila(), origen.getColumna());
+        ponPieza(pieza, destino);
+    }
+
+    public Pieza devuelvePieza(int fila, int columna) {
         return tablero[fila][columna];
     }
 
-    public Pieza devuelvePieza(Posicion pos){
+    public Pieza devuelvePieza(Posicion pos) {
         return devuelvePieza(pos.getFila(), pos.getColumna());
     }
 }

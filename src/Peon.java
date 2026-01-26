@@ -1,6 +1,7 @@
 public class Peon extends Pieza {
     public Peon(int color) {
         super(color);
+        this.setNombre("peon");
     }
 
     @Override

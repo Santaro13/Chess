@@ -4,19 +4,16 @@ public class Tester {
     public static void main(String[] args) {
         Tablero tablero = new Tablero();
         Juego juego = new Juego();
-
+        juego.setTurno(1);
         Scanner sc = new Scanner(System.in);
         for (int i = 0; i < 4; i++) {
 
             tablero.pintarTablero();
 
-            int turno = juego.getTurno();
-            if (turno == 1) {
+            if (juego.getTurno() == 1) {
                 System.out.println(Constantes.MSG_TURNO_BLANCO);
-                juego.setTurno(0);
             } else {
                 System.out.println(Constantes.MSG_TURNO_NEGRO);
-                juego.setTurno(1);
             }
 
 
@@ -25,6 +22,12 @@ public class Tester {
             String prompt = sc.nextLine();
 
             juego.jugada(prompt.toLowerCase(),tablero);
+
+
+            tablero.moverPieza(juego.jugada(prompt,tablero));
+
+                   juego.setTurno(juego.getTurno() == 1 ? 0 : 1);
+
 
         }
     }

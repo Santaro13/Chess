@@ -15,7 +15,6 @@ public class Juego {
         String s = jugada.trim().toLowerCase();
         if (s.length() != 4) {
             System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
-            return null;
         }
 
 
@@ -26,12 +25,10 @@ public class Juego {
 
         if (columna1 < 'a' || columna1 > 'h' || columna2 < 'a' || columna2 > 'h'){
             System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
-            return null;
         }
 
         if (fila1 < '1' || fila1 > '8' || fila2 < '1' || fila2 > '8') {
             System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
-            return null;
         }
 
         int  col1 = columna1 - 'a';
@@ -45,20 +42,64 @@ public class Juego {
 
         if (!tablero.hayPieza(fil1, col1)) {
             System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
-            return null;
         }
 
 
         Pieza p = tablero.devuelvePieza(posIni);
 
-        if (p.getColor() != turno) return null;
 
-        Movimiento move= new Movimiento(posIni, posFin);
-        this.mov=move;
-        return move;
+        if (p.getColor() != turno){
+            System.out.println(Constantes.MSG_TURNO_INVALIDO);
+
+        }
+        this.mov= new Movimiento(posIni, posFin);
+
+        switch (p.getNombre()) {
+            case "rey":
+                if (!((Rey) p).movimientoValido(mov)) {
+                    System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+                    return null;
+                }
+                break;
+            case "dama":
+                if (!((Dama) p).movimientoValido(mov)) {
+                    System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+                    return null;
+                }
+                break;
+            case "torre":
+                if (!((Torre) p).movimientoValido(mov)) {
+                    System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+                    return null;
+                }
+                break;
+            case "alfil":
+                if (!((Alfil) p).movimientoValido(mov)) {
+                    System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+                    return null;
+                }
+                break;
+            case "caballo":
+                if (!((Caballo) p).movimientoValido(mov)) {
+                    System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+                    return null;
+                }
+                break;
+            case "peon":
+                if (!((Peon) p).movimientoValido(mov)) {
+                    System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+                    return null;
+                }
+                break;
+            default:
+                System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+                return null;
+        }
 
 
-
-
+        return this.mov;
+    }
+    public Movimiento getMovimiento() {
+        return this.mov;
     }
 }
