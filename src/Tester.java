@@ -16,17 +16,19 @@ public class Tester {
                 System.out.println(Constantes.MSG_TURNO_NEGRO);
             }
 
+                System.out.print(Constantes.MSG_INTRODUCE_JUGADA);
+            String prompt = sc.nextLine().trim().toLowerCase();
 
+                juego.jugada(prompt.toLowerCase(), tablero);
 
-            System.out.print(Constantes.MSG_INTRODUCE_JUGADA);
-            String prompt = sc.nextLine();
+            var mov = juego.jugada(prompt, tablero);
 
-            juego.jugada(prompt.toLowerCase(),tablero);
-
-
-            tablero.moverPieza(juego.jugada(prompt,tablero));
-
-                   juego.setTurno(juego.getTurno() == 1 ? 0 : 1);
+            if (mov!=null) {
+                tablero.moverPieza(mov);
+                juego.setTurno(juego.getTurno() == 1 ? 0 : 1);
+            }else{
+                System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+            }
 
 
         }

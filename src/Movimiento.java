@@ -30,12 +30,7 @@ public class Movimiento {
     public boolean esHorizontal(){
         if (posInicial==null||posFinal==null) {
             return false;
-        }
-        if (posFinal.getFila() == posInicial.getFila()) {
-            return true;
-        } else {
-            return false;
-        }
+        }else return posFinal.getFila() == posInicial.getFila();
 
     }
 

@@ -71,6 +71,7 @@ public class Tablero {
     }
 
     public boolean hayPieza(Posicion pos) {
+
         return pos != null;
     }
 
@@ -95,10 +96,11 @@ public class Tablero {
         Posicion origen = mov.posInicial;
         Posicion destino = mov.posFinal;
 
-        Pieza pieza = tablero[origen.getFila()][origen.getColumna()];
+        Pieza pieza1 = tablero[origen.getFila()][origen.getColumna()];
+        Pieza pieza2 = tablero[destino.getFila()][origen.getColumna()];
 
         quitaPieza(origen.getFila(), origen.getColumna());
-        ponPieza(pieza, destino);
+        ponPieza(pieza1, destino);
     }
 
     public Pieza devuelvePieza(int fila, int columna) {
@@ -108,5 +110,17 @@ public class Tablero {
     public Pieza devuelvePieza(Posicion pos) {
         return devuelvePieza(pos.getFila(), pos.getColumna());
     }
-}
 
+
+    public Pieza hayPiezaEntre(Movimiento mov){
+        Posicion origen = mov.posInicial;
+        Posicion destino = mov.posFinal;
+        if (mov.esVertical()){
+            int col = pos.getColumna();
+            int filaIn = Math.min(origen.getFila(), destino.getFila());
+            int filaFin = Math.max(origen.getFila(), destino.getFila());
+
+        }
+        return null;
+    }
+}

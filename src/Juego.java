@@ -1,6 +1,7 @@
 public class Juego {
     private int turno; // 0 para negras, 1 para blancas
     private Movimiento mov;
+
     public int getTurno() {
         return turno;
     }
@@ -25,10 +26,13 @@ public class Juego {
 
         if (columna1 < 'a' || columna1 > 'h' || columna2 < 'a' || columna2 > 'h'){
             System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
-        }
+            return null;
 
-        if (fila1 < '1' || fila1 > '8' || fila2 < '1' || fila2 > '8') {
+        } else if (fila1 < '1' || fila1 > '8' || fila2 < '1' || fila2 > '8') {
             System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
+            return null;
+        }else{
+            System.out.println(Constantes.MSG_ERROR);
         }
 
         int  col1 = columna1 - 'a';
@@ -38,61 +42,61 @@ public class Juego {
 
         Posicion posIni = new Posicion(fil1, col1);
         Posicion posFin = new Posicion(fil2, col2);
-
+        Pieza p = tablero.devuelvePieza(posIni);
 
         if (!tablero.hayPieza(fil1, col1)) {
             System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
-        }
-
-
-        Pieza p = tablero.devuelvePieza(posIni);
-
-
-        if (p.getColor() != turno){
+            return null;
+        }else if (p.getColor() != turno){
             System.out.println(Constantes.MSG_TURNO_INVALIDO);
-
+            return null;
         }
+
+
+
+
+
         this.mov= new Movimiento(posIni, posFin);
 
         switch (p.getNombre()) {
             case "rey":
                 if (!((Rey) p).movimientoValido(mov)) {
-                    System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+
                     return null;
                 }
                 break;
             case "dama":
                 if (!((Dama) p).movimientoValido(mov)) {
-                    System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+
                     return null;
                 }
                 break;
             case "torre":
                 if (!((Torre) p).movimientoValido(mov)) {
-                    System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+
                     return null;
                 }
                 break;
             case "alfil":
                 if (!((Alfil) p).movimientoValido(mov)) {
-                    System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+
                     return null;
                 }
                 break;
             case "caballo":
                 if (!((Caballo) p).movimientoValido(mov)) {
-                    System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+
                     return null;
                 }
                 break;
             case "peon":
                 if (!((Peon) p).movimientoValido(mov)) {
-                    System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+
                     return null;
                 }
                 break;
             default:
-                System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+                System.out.println(Constantes.MSG_ERROR);
                 return null;
         }
 
