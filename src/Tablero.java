@@ -123,8 +123,40 @@ public class Tablero {
             int col = pos.getColumna();
             int filaIn = Math.min(origen.getFila(), destino.getFila());
             int filaFin = Math.max(origen.getFila(), destino.getFila());
+            for (int fila = filaIn + 1; fila < filaFin; fila++) {
+                if (hayPieza(fila, col)) {
+                    return devuelvePieza(fila, col);
+                }
+            }
+
+        } else if (mov.esHorizontal()) {
+            int fila = pos.getFila();
+            int colIn = Math.min(origen.getColumna(), destino.getColumna());
+            int colFin = Math.max(origen.getColumna(), destino.getColumna());
+            for (int col = colIn + 1; col < colFin; col++)
+                if (hayPieza(fila, col)) {
+                    return devuelvePieza(fila, col);
+                }
+        } else if (mov.esDiagonal()) {
+            int filaIn = Math.min(origen.getFila(), destino.getFila());
+            int filaFin = Math.max(origen.getFila(), destino.getFila());
+            int colIn = Math.min(origen.getColumna(), destino.getColumna());
+            int colFin = Math.max(origen.getColumna(), destino.getColumna());
+            int fila = filaIn + 1;
+            int col = colIn + 1;
+            while (fila < filaFin && col < colFin) {
+                if (hayPieza(fila, col)) {
+
+                    return devuelvePieza(fila, col);
+                }
+                fila++;
+                col++;
+            }
+
+
 
         }
         return null;
     }
+
 }

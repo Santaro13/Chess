@@ -6,15 +6,26 @@ public class Peon extends Pieza {
 
     @Override
     public boolean movimientoValido(Movimiento mov) {
-        if (mov.esVertical()) {
-            return true;
-        } else {
+        Posicion posIni = mov.posInicial;
+        Posicion posFin = mov.posFinal;
+
+        if (getColor() == 1 && posIni.getFila() == 2) {
+            if (mov.esVertical() && mov.saltoVertical() == 2|| mov.saltoVertical() == 1) {
+                return true;
+            } else if(getColor() == 0 && posIni.getFila() == 7) {
+                if (mov.esVertical() && mov.saltoVertical() == 2|| mov.saltoVertical() == 1) {
+                    return true;
+                }
+            }else {
+                return false;
+            }
+        }else {
             return false;
         }
     }
 
-    @Override
-    public String pintarPieza() {
-        return getColor() == 0 ? "[♙]" : "[♟]";
-    }
+        @Override
+        public String pintarPieza () {
+            return getColor() == 0 ? "[♙]" : "[♟]";
+        }
 }

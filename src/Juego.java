@@ -40,8 +40,10 @@ public class Juego {
 
         Posicion posIni = new Posicion(fil1, col1);
         Posicion posFin = new Posicion(fil2, col2);
+        Movimiento movimiento = new Movimiento(posIni, posFin);
         Pieza p1 = tablero.devuelvePieza(posIni);
         Pieza p2 = tablero.devuelvePieza(posFin);
+        Pieza block = tablero.hayPiezaEntre(movimiento);
 
         if (!tablero.hayPieza(fil1, col1)) {
             System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
@@ -55,55 +57,14 @@ public class Juego {
                 System.out.println(Constantes.MSG_CANIBALISMO);
                 return null;
             }
+        }else if (block != null) {
+            System.out.println(Constantes.MSG_HAY_PIEZA_ENTRE);
+            return null;
+        }else if (!p1.movimientoValido(movimiento)) {
+            System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+            return null;
         }
-
-
         this.mov= new Movimiento(posIni, posFin);
-
-        
-        
-        
-//        switch (p.getNombre()) {
-//            case "rey":
-//                if (!((Rey) p).movimientoValido(mov)) {
-//
-//                    return null;
-//                }
-//                break;
-//            case "dama":
-//                if (!((Dama) p).movimientoValido(mov)) {
-//
-//                    return null;
-//                }
-//                break;
-//            case "torre":
-//                if (!((Torre) p).movimientoValido(mov)) {
-//
-//                    return null;
-//                }
-//                break;
-//            case "alfil":
-//                if (!((Alfil) p).movimientoValido(mov)) {
-//
-//                    return null;
-//                }
-//                break;
-//            case "caballo":
-//                if (!((Caballo) p).movimientoValido(mov)) {
-//
-//                    return null;
-//                }
-//                break;
-//            case "peon":
-//                if (!((Peon) p).movimientoValido(mov)) {
-//
-//                    return null;
-//                }
-//                break;
-//            default:
-//                System.out.println(Constantes.MSG_ERROR);
-//                return null;
-//        }
 
 
         return this.mov;

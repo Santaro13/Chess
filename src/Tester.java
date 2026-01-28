@@ -6,7 +6,7 @@ public class Tester {
         Juego juego = new Juego();
         juego.setTurno(1);
         Scanner sc = new Scanner(System.in);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 8; i++) {
 
             tablero.pintarTablero();
 
@@ -24,8 +24,6 @@ public class Tester {
             if (mov!=null) {
                 tablero.moverPieza(mov);
                 juego.setTurno(juego.getTurno() == 1 ? 0 : 1);
-            }else{
-                System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
             }
 
 
