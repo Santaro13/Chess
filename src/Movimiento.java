@@ -2,6 +2,22 @@ public class Movimiento {
     Posicion posInicial;
     Posicion posFinal;
 
+    public Posicion getPosInicial() {
+        return posInicial;
+    }
+
+    public Posicion getPosFinal() {
+        return posFinal;
+    }
+
+    public void setPosInicial(Posicion posInicial) {
+        this.posInicial = posInicial;
+    }
+
+    public void setPosFinal(Posicion posFinal) {
+        this.posFinal = posFinal;
+    }
+
     public Movimiento(Posicion posInicial, Posicion posFinal) {
         this.posInicial = posInicial;
         this.posFinal = posFinal;
@@ -15,9 +31,6 @@ public class Movimiento {
 
 
     public boolean esVertical(){
-        if (posFinal==null || posInicial==null) {
-            return false;
-        }
 
         if (posFinal.getColumna() == posInicial.getColumna()) {
             return true;

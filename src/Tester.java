@@ -19,8 +19,6 @@ public class Tester {
                 System.out.print(Constantes.MSG_INTRODUCE_JUGADA);
             String prompt = sc.nextLine().trim().toLowerCase();
 
-                juego.jugada(prompt.toLowerCase(), tablero);
-
             var mov = juego.jugada(prompt, tablero);
 
             if (mov!=null) {

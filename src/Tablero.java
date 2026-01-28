@@ -85,10 +85,12 @@ public class Tablero {
 
     public void quitaPieza(int fila, int columna) {
         tablero[fila][columna] = null;
+
     }
 
     public void quitaPieza(Pieza figura, Posicion pos) {
         quitaPieza(pos.getFila(), pos.getColumna());
+
     }
 
     public void moverPieza(Movimiento mov) {
@@ -99,13 +101,8 @@ public class Tablero {
 
         Pieza pieza1 = tablero[origen.getFila()][origen.getColumna()];
         Pieza pieza2 = tablero[destino.getFila()][origen.getColumna()];
-        if (pieza1.getColor()!=pieza2.getColor()){
-            quitaPieza(origen.getFila(), origen.getColumna());
-            ponPieza(pieza1, destino);
-        }else{
-            System.out.println(Constantes.MSG_CANIBALISMO);
-        }
-
+        ponPieza(pieza1, destino);
+        quitaPieza(origen.getFila(), origen.getColumna());
 
 
     }
