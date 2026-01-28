@@ -81,7 +81,6 @@ public class Tablero {
 
     public void ponPieza(Pieza figura, Posicion pos) {
         ponPieza(figura, pos.getFila(), pos.getColumna());
-
     }
 
     public void quitaPieza(int fila, int columna) {
@@ -96,11 +95,19 @@ public class Tablero {
         Posicion origen = mov.posInicial;
         Posicion destino = mov.posFinal;
 
+
+
         Pieza pieza1 = tablero[origen.getFila()][origen.getColumna()];
         Pieza pieza2 = tablero[destino.getFila()][origen.getColumna()];
+        if (pieza1.getColor()!=pieza2.getColor()){
+            quitaPieza(origen.getFila(), origen.getColumna());
+            ponPieza(pieza1, destino);
+        }else{
+            System.out.println(Constantes.MSG_CANIBALISMO);
+        }
 
-        quitaPieza(origen.getFila(), origen.getColumna());
-        ponPieza(pieza1, destino);
+
+
     }
 
     public Pieza devuelvePieza(int fila, int columna) {
@@ -112,10 +119,10 @@ public class Tablero {
     }
 
 
-    public Pieza hayPiezaEntre(Movimiento mov){
+    public Pieza hayPiezaEntre(Movimiento mov) {
         Posicion origen = mov.posInicial;
         Posicion destino = mov.posFinal;
-        if (mov.esVertical()){
+        if (mov.esVertical()) {
             int col = pos.getColumna();
             int filaIn = Math.min(origen.getFila(), destino.getFila());
             int filaFin = Math.max(origen.getFila(), destino.getFila());
