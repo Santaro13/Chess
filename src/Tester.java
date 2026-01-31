@@ -6,7 +6,7 @@ public class Tester {
         Juego juego = new Juego();
         juego.setTurno(1);
         Scanner sc = new Scanner(System.in);
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 10; i++) {
 
             tablero.pintarTablero();
 

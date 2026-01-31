@@ -15,7 +15,9 @@ public class Juego {
 
         String s = jugada.trim().toLowerCase();
         if (s.length() != 4) {
+            System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
             System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
+            return null;
         }
 
 
@@ -26,10 +28,12 @@ public class Juego {
 
         if (columna1 < 'a' || columna1 > 'h' || columna2 < 'a' || columna2 > 'h') {
             System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
+            System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
             return null;
 
         } else if (fila1 < '1' || fila1 > '8' || fila2 < '1' || fila2 > '8') {
             System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
+            System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
             return null;
         }
 
