@@ -51,16 +51,16 @@ public class Juego {
         } else if (p1.getColor() != turno) {
             System.out.println(Constantes.MSG_TURNO_INVALIDO);
             return null;
-
         }else if (p2!=null){
             if (p1.getColor()== p2.getColor()) {
                 System.out.println(Constantes.MSG_CANIBALISMO);
                 return null;
             }
-        }else if (block != null) {
+        }else if (block != null && !movimiento.esDiagonal() && !(p1 instanceof Peon)) {
             System.out.println(Constantes.MSG_HAY_PIEZA_ENTRE);
             return null;
-        }else if (!p1.movimientoValido(movimiento)) {
+
+    }else if (!p1.movimientoValido(movimiento)) {
             System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
             return null;
         }

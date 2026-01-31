@@ -2,7 +2,7 @@ public class Alfil extends Pieza {
 
     public Alfil(int color) {
         super(color);
-        this.setNombre("Alfil");
+        this.setNombre("alfil");
     }
 
     @Override
@@ -18,7 +18,4 @@ public class Alfil extends Pieza {
     public String pintarPieza() {
         return getColor() == 0 ? "[♗]" : "[♝]";
     }
-
-
-
 }

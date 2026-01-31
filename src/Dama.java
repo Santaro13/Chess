@@ -7,7 +7,7 @@ public class Dama extends Pieza {
 
     @Override
     public boolean movimientoValido(Movimiento mov) {
-        if (mov.esHorizontal() || mov.esVertical() || mov.esDiagonal()) {
+        if (mov.esDiagonal() || mov.esHorizontal() || mov.esVertical()) {
             return true;
         } else {
             return false;
