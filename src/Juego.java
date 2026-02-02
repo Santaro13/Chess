@@ -60,7 +60,7 @@ public class Juego {
                 System.out.println(Constantes.MSG_CANIBALISMO);
                 return null;
             }
-        }else if (block != null && !movimiento.esDiagonal() && !(p1 instanceof Peon)) {
+        }else if (block != null && !(p1 instanceof Peon)) {
             System.out.println(Constantes.MSG_HAY_PIEZA_ENTRE);
             return null;
 

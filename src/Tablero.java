@@ -1,5 +1,5 @@
 public class Tablero {
-    Pieza tablero[][] = new Pieza[8][8];
+    Pieza[][] tablero = new Pieza[8][8];
     Posicion pos = new Posicion();
 
 
