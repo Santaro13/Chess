@@ -13,6 +13,7 @@ public class Juego {
 
     public Movimiento jugada(String jugada, Tablero tablero) {
 
+
         String s = jugada.trim().toLowerCase();
         if (s.length() != 4) {
             System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
@@ -66,12 +67,31 @@ public class Juego {
     } if (!p1.movimientoValido(movimiento)) {
             System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
             return null;
+        } else if (p1 instanceof Peon) {
+
+            if ((p1.getColor() == 1 && posFin.getFila() == 7) ||
+                    (p1.getColor() == 0 && posFin.getFila() == 0)) {
+
+                int opcion = Constantes.leerEntero(Constantes.MSG_PROMOCION);
+                Pieza nueva = switch (opcion) {
+                    case 1 -> new Dama(p1.getColor());
+                    case 2 -> new Torre(p1.getColor());
+                    case 3 -> new Alfil(p1.getColor());
+                    case 4 -> new Caballo(p1.getColor());
+                    default -> null;
+                };
+                tablero.quitaPieza(p1,posIni);
+                tablero.ponPieza(nueva,posIni);
+            }
         }
         this.mov= new Movimiento(posIni, posFin);
-
-
         return this.mov;
     }
+
+
+
+
+
     public Movimiento getMovimiento() {
         return this.mov;
     }

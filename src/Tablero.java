@@ -100,7 +100,7 @@ public class Tablero {
 
 
         Pieza pieza1 = tablero[origen.getFila()][origen.getColumna()];
-        Pieza pieza2 = tablero[destino.getFila()][origen.getColumna()];
+        Pieza pieza2 = tablero[destino.getFila()][destino.getColumna()];
         ponPieza(pieza1, destino);
         quitaPieza(origen.getFila(), origen.getColumna());
 
@@ -128,7 +128,6 @@ public class Tablero {
                     return devuelvePieza(fila, col);
                 }
             }
-
         } else if (mov.esHorizontal()) {
             int fila = pos.getFila();
             int colIn = Math.min(origen.getColumna(), destino.getColumna());

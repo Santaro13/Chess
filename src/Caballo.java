@@ -7,9 +7,6 @@ public class Caballo extends Pieza {
 
     @Override
     public boolean movimientoValido(Movimiento mov) {
-        if (mov.esDiagonal()) {
-            return false;
-        }
         if (Math.abs(mov.saltoVertical()) == 2 && Math.abs(mov.saltoHorizontal()) == 1 || Math.abs(mov.saltoVertical()) == 1 && Math.abs(mov.saltoHorizontal()) == 2){
             return true;
         }else {
