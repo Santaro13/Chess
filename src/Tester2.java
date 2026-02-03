@@ -84,7 +84,7 @@ public class Tester2 {
 
         System.out.println("Tablero inicial (piezas desordenadas):");
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             tablero.pintarTablero();
 
             if (juego.getTurno() == 1) {

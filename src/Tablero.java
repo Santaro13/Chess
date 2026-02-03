@@ -54,10 +54,10 @@ public class Tablero {
             System.out.println();
         }
 
-        // marco
+        // letras
         System.out.print("   ");
         for (char letra = 'a'; letra <= 'h'; letra++) {
-            System.out.print(letra + "     ");
+            System.out.print(letra + "ㅤ   ");
         }
         System.out.println();
     }

@@ -30,7 +30,6 @@ public class Juego {
             System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
             System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
             return null;
-
         } else if (fila1 < '1' || fila1 > '8' || fila2 < '1' || fila2 > '8') {
             System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
             System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
@@ -64,7 +63,7 @@ public class Juego {
             System.out.println(Constantes.MSG_HAY_PIEZA_ENTRE);
             return null;
 
-    }else if (!p1.movimientoValido(movimiento)) {
+    } if (!p1.movimientoValido(movimiento)) {
             System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
             return null;
         }

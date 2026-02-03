@@ -2,7 +2,7 @@ public class Dama extends Pieza {
 
     public Dama(int color) {
         super(color);
-        this.setNombre("dama");
+        this.setNombre("Dama");
     }
 
     @Override

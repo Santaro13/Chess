@@ -10,6 +10,7 @@ public abstract class Pieza {
 
     }
 
+
     public int getColor() {
         return color;
     }
@@ -17,11 +18,22 @@ public abstract class Pieza {
     public abstract boolean movimientoValido(Movimiento mov);
 
     public String getNombre() {
-        return nombre.toLowerCase();
+        // proteger contra nombre == null
+        return nombre == null ? "" : nombre.toLowerCase();
     }
     public void setNombre(String nombre) {
-        this.nombre = nombre.toLowerCase();
+        if (nombre == null) {
+            this.nombre = null;
+        } else {
+            this.nombre = nombre.toLowerCase();
+        }
 
+    }
+
+    public void setPieza(Posicion posFin, Pieza otra) {
+        if (otra == null) return;
+        // copiar campos mutables; ahora sólo 'nombre'
+        this.setNombre(otra.getNombre());
     }
 
     public abstract String pintarPieza();
