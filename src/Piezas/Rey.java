@@ -1,3 +1,5 @@
+package Piezas;
+import ajedrez.Movimiento;
 public class Rey extends Pieza {
 
 

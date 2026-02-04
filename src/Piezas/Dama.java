@@ -1,8 +1,10 @@
+package Piezas;
+import ajedrez.Movimiento;
 public class Dama extends Pieza {
 
     public Dama(int color) {
         super(color);
-        this.setNombre("Dama");
+        this.setNombre("Piezas.Dama");
     }
 
     @Override

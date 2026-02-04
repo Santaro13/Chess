@@ -1,3 +1,5 @@
+package Piezas;
+import ajedrez.Movimiento;
 public class Torre extends Pieza {
 
     public Torre(int color) {

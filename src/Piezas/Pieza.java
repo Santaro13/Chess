@@ -1,3 +1,7 @@
+package Piezas;
+import ajedrez.Movimiento;
+import ajedrez.Posicion;
+
 public abstract class Pieza {
     private final int color;
     //public static final int NEGRAS = 0;
@@ -7,7 +11,12 @@ public abstract class Pieza {
     //0-Negras 1-Blancas
     public Pieza(int color) {
         this.color = color;
+        nombre = getClass().getSimpleName().toLowerCase();
+    }
 
+    public Pieza(int color, String nombre) {
+        this.color = color;
+        this.nombre = nombre;
     }
 
 
@@ -41,7 +50,7 @@ public abstract class Pieza {
 
     @Override
     public String toString() {
-        return "Pieza{" +
+        return "Piezas.Pieza{" +
                 "color=" + color +
                 ", nombre='" + nombre + '\'' +
                 '}';

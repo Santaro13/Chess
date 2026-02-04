@@ -1,3 +1,5 @@
+package ajedrez;
+
 public class Posicion {
     private int fila;
     private int columna;
@@ -30,7 +32,7 @@ public class Posicion {
 
     @Override
     public String toString() {
-        return "Posicion{" +
+        return "ajedrez.Posicion{" +
                 "fila=" + fila +
                 ", columna=" + columna +
                 '}';

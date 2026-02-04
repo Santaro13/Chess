@@ -1,8 +1,12 @@
+package Piezas;
+
+import ajedrez.Movimiento;
+
 public class Alfil extends Pieza {
 
     public Alfil(int color) {
-        super(color);
-        this.setNombre("alfil");
+        super(color, "alfil");
+        //this.setNombre("alfil");
     }
 
     @Override

@@ -1,3 +1,5 @@
+package Piezas;
+import ajedrez.Movimiento;
 public class Caballo extends Pieza {
 
     public Caballo(int color) {

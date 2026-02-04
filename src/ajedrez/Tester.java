@@ -1,3 +1,5 @@
+package ajedrez;
+
 import java.util.Scanner;
 
 public class Tester {
@@ -6,7 +8,7 @@ public class Tester {
         Juego juego = new Juego();
         juego.setTurno(1);
         Scanner sc = new Scanner(System.in);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
 
             tablero.pintarTablero();
 
@@ -19,10 +21,10 @@ public class Tester {
                 System.out.print(Constantes.MSG_INTRODUCE_JUGADA);
             String prompt = sc.nextLine().trim().toLowerCase();
 
-            var mov = juego.jugada(prompt, tablero);
+            String move = juego.jugada(prompt, tablero);
 
-            if (mov!=null) {
-                tablero.moverPieza(mov);
+            if (move!=null) {
+                tablero.moverPieza(juego.getMovimiento());
                 juego.setTurno(juego.getTurno() == 1 ? 0 : 1);
             }
 

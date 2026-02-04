@@ -1,4 +1,6 @@
-// Reorganizo el tester: estructura similar a Tester.java, coloca un peón en a7 y deja la promoción al usuario
+package ajedrez;// Reorganizo el tester: estructura similar a ajedrez.Tester.java, coloca un peón en a7 y deja la promoción al usuario
+import Piezas.Peon;
+
 import java.util.Scanner;
 
 public class Tester3 {
@@ -15,7 +17,7 @@ public class Tester3 {
         tablero.quitaPieza(6, 0); // limpiar a7 por si hay otra pieza
         tablero.ponPieza(new Peon(1), 6, 0); // colocar peón (color 1) en a7
 
-        // Bucle simple parecido a Tester.java
+        // Bucle simple parecido a ajedrez.Tester.java
         for (int i = 0; i < 10; i++) {
             tablero.pintarTablero();
 
@@ -28,10 +30,10 @@ public class Tester3 {
             System.out.print(Constantes.MSG_INTRODUCE_JUGADA);
             String prompt = sc.nextLine().trim().toLowerCase();
 
-            Movimiento mov = juego.jugada(prompt, tablero);
+            String mov = juego.jugada(prompt, tablero);
 
             if (mov != null) {
-                tablero.moverPieza(mov);
+                tablero.moverPieza(juego.getMovimiento());
                 // no gestionamos la promoción aquí; lo harás tú manualmente si necesitas
                 juego.setTurno(juego.getTurno() == 1 ? 0 : 1);
             }

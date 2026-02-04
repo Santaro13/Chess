@@ -1,6 +1,8 @@
+package ajedrez;
+
 public class Movimiento {
-    Posicion posInicial;
-    Posicion posFinal;
+    protected Posicion posInicial;
+    protected Posicion posFinal;
 
     public Posicion getPosInicial() {
         return posInicial;
@@ -62,7 +64,7 @@ public class Movimiento {
     }
 
     public int saltoVertical(){
-        return Math.abs(posInicial.getFila() - posFinal.getFila());
+        return (posFinal.getFila() - posInicial.getFila());
     }
 
 
@@ -73,7 +75,7 @@ public class Movimiento {
 
     @Override
     public String toString() {
-        return "Movimiento{" +
+        return "ajedrez.Movimiento{" +
                 "posInicial=" + posInicial +
                 ", posFinal=" + posFinal +
                 '}';

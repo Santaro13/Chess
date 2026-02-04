@@ -1,3 +1,7 @@
+package ajedrez;
+
+import Piezas.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -77,12 +81,12 @@ public class Tester2 {
             }
         }
 
-        // Preparar juego interactivo (mismo comportamiento que Tester.java)
+        // Preparar juego interactivo (mismo comportamiento que ajedrez.Tester.java)
         Juego juego = new Juego();
         juego.setTurno(1); // empezar con blancas
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Tablero inicial (piezas desordenadas):");
+        System.out.println("ajedrez.Tablero inicial (piezas desordenadas):");
 
         for (int i = 0; i < 100; i++) {
             tablero.pintarTablero();
@@ -96,10 +100,10 @@ public class Tester2 {
             System.out.print(Constantes.MSG_INTRODUCE_JUGADA);
             String prompt = sc.nextLine().trim().toLowerCase();
 
-            Movimiento mov = juego.jugada(prompt, tablero);
+            String mov = juego.jugada(prompt, tablero);
 
             if (mov != null) {
-                tablero.moverPieza(mov);
+                tablero.moverPieza(juego.getMovimiento());
                 juego.setTurno(juego.getTurno() == 1 ? 0 : 1);
             }
         }

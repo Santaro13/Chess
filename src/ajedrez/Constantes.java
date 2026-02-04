@@ -1,3 +1,5 @@
+package ajedrez;
+
 import java.util.Scanner;
 
 public class Constantes {

@@ -1,6 +1,10 @@
+package ajedrez;
+
+import Piezas.*;
+
 public class Tablero {
     Pieza[][] tablero = new Pieza[8][8];
-    Posicion pos = new Posicion();
+
 
 
     public Tablero() {
@@ -48,8 +52,8 @@ public class Tablero {
             System.out.print(fila + " ");
             for (int columna = 0; columna < 8; columna++) {
                 Pieza p = tablero[fila - 1][columna];
-                String token = (p == null) ? "[ㅤ]" : p.pintarPieza();
-                System.out.print(token + "  ");
+                String unicode = (p == null) ? "[ㅤ]" : p.pintarPieza();
+                System.out.print(unicode + "  ");
             }
             System.out.println();
         }
@@ -88,9 +92,8 @@ public class Tablero {
 
     }
 
-    public void quitaPieza(Pieza figura, Posicion pos) {
+    public void quitaPieza(Posicion pos) {
         quitaPieza(pos.getFila(), pos.getColumna());
-
     }
 
     public void moverPieza(Movimiento mov) {
@@ -100,7 +103,6 @@ public class Tablero {
 
 
         Pieza pieza1 = tablero[origen.getFila()][origen.getColumna()];
-        Pieza pieza2 = tablero[destino.getFila()][destino.getColumna()];
         ponPieza(pieza1, destino);
         quitaPieza(origen.getFila(), origen.getColumna());
 
@@ -120,7 +122,7 @@ public class Tablero {
         Posicion origen = mov.posInicial;
         Posicion destino = mov.posFinal;
         if (mov.esVertical()) {
-            int col = pos.getColumna();
+            int col = origen.getColumna();
             int filaIn = Math.min(origen.getFila(), destino.getFila());
             int filaFin = Math.max(origen.getFila(), destino.getFila());
             for (int fila = filaIn + 1; fila < filaFin; fila++) {
@@ -129,7 +131,7 @@ public class Tablero {
                 }
             }
         } else if (mov.esHorizontal()) {
-            int fila = pos.getFila();
+            int fila = origen.getFila();
             int colIn = Math.min(origen.getColumna(), destino.getColumna());
             int colFin = Math.max(origen.getColumna(), destino.getColumna());
             for (int col = colIn + 1; col < colFin; col++)
@@ -145,7 +147,6 @@ public class Tablero {
             int col = colIn + 1;
             while (fila < filaFin && col < colFin) {
                 if (hayPieza(fila, col)) {
-
                     return devuelvePieza(fila, col);
                 }
                 fila++;
