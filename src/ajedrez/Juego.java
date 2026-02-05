@@ -15,7 +15,7 @@ public class Juego {
 
     }
 
-    public String jugada(String jugada, Tablero tablero){
+    public String jugada(String jugada, Tablero tablero) {
         String s = jugada.trim().toLowerCase();
         char columna1 = s.charAt(0);
         char fila1 = s.charAt(1);
@@ -45,17 +45,30 @@ public class Juego {
             System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
         } else if (!tablero.hayPieza(fil1, col1)) {
             System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+        } else if (p1 instanceof Peon && movimiento.esDiagonal()) {
+            Pieza pDest = tablero.devuelvePieza(posFin);
+            if (pDest != null && pDest.getColor() != p1.getColor()) {
+                // comida válida
+                this.mov = movimiento;
+                return s;
+            } else {
+                System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+            }
         }else if (!p1.movimientoValido(movimiento)) {
             System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
         } else if (p1.getColor() != turno) {
             System.out.println(Constantes.MSG_TURNO_INVALIDO);
-        }else if (p2!=null){
-            if (p1.getColor()== p2.getColor()) {
-                System.out.println(Constantes.MSG_CANIBALISMO);
-            }
-        }else if (block != null && !(p1 instanceof Peon)) {
+        } else if (block != null) {
             System.out.println(Constantes.MSG_HAY_PIEZA_ENTRE);
-        } else if (p1 instanceof Peon) {
+        } else if (p2 != null) {
+            if (p1.getColor() == p2.getColor()) {
+                System.out.println(Constantes.MSG_CANIBALISMO);
+            }else{
+                this.mov = movimiento;
+                return s;
+            }
+        } else if (p1 instanceof Peon && ((p1.getColor() == 1 && posFin.getFila() == 7) ||
+                (p1.getColor() == 0 && posFin.getFila() == 0))) {
             if ((p1.getColor() == 1 && posFin.getFila() == 7) ||
                     (p1.getColor() == 0 && posFin.getFila() == 0)) {
 
@@ -67,21 +80,24 @@ public class Juego {
                     case 4 -> new Caballo(p1.getColor());
                     default -> null;
                 };
+                if (getTurno() == 1) {
+                    setTurno(0);
+                } else {
+                    setTurno(1);
+                }
                 tablero.quitaPieza(posIni);
-                tablero.ponPieza(nueva,posIni);
+                tablero.ponPieza(nueva, posFin);
             }
-        }else {
-            return null;
+        } else {
+            this.mov = movimiento;
+            return s;
+
         }
-        this.mov= new Movimiento(posIni, posFin);
-        return s;
+        return null;
     }
 
 
-
-
-
     public Movimiento getMovimiento() {
-        return this.mov;
+        return mov;
     }
 }

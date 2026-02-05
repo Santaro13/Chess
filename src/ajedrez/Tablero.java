@@ -46,6 +46,10 @@ public class Tablero {
         }
     }
 
+    public static Tablero getInstance() {
+        return new Tablero();
+    }
+
 
     public void pintarTablero() {
         for (int fila = 8; fila >= 1; fila--) {
@@ -138,23 +142,25 @@ public class Tablero {
                 if (hayPieza(fila, col)) {
                     return devuelvePieza(fila, col);
                 }
-        } else if (mov.esDiagonal()) {
-            int filaIn = Math.min(origen.getFila(), destino.getFila());
-            int filaFin = Math.max(origen.getFila(), destino.getFila());
-            int colIn = Math.min(origen.getColumna(), destino.getColumna());
-            int colFin = Math.max(origen.getColumna(), destino.getColumna());
-            int fila = filaIn + 1;
-            int col = colIn + 1;
-            while (fila < filaFin && col < colFin) {
+        }else if (mov.esDiagonal()) {
+            int fila = origen.getFila();
+            int col = origen.getColumna();
+            int filaFin = destino.getFila();
+            int colFin = destino.getColumna();
+
+            int df = (filaFin - fila) > 0 ? 1 : -1;
+            int dc = (colFin - col) > 0 ? 1 : -1;
+
+            fila += df;
+            col += dc;
+
+            while (fila != filaFin && col != colFin) {
                 if (hayPieza(fila, col)) {
                     return devuelvePieza(fila, col);
                 }
-                fila++;
-                col++;
+                fila += df;
+                col += dc;
             }
-
-
-
         }
         return null;
     }

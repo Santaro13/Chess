@@ -63,13 +63,13 @@ public class Movimiento {
         return Math.abs(posInicial.getColumna() - posFinal.getColumna());
     }
 
-    public int saltoVertical(){
+    public int saltoVertical() {
         return (posFinal.getFila() - posInicial.getFila());
     }
 
 
     public int saltoDiagonal() {
-        return Math.abs(posFinal.getFila() - posInicial.getFila());
+        return (posFinal.getFila() - posInicial.getFila());
     }
 
 
@@ -79,5 +79,9 @@ public class Movimiento {
                 "posInicial=" + posInicial +
                 ", posFinal=" + posFinal +
                 '}';
+    }
+
+    public Tablero getTablero() {
+        return Tablero.getInstance();
     }
 }
