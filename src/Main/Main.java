@@ -31,17 +31,20 @@ public class Main {
             if (move!=null) {
                 tablero.moverPieza(juego.getMovimiento());
             }
-            if (tablero.hayJaque(juego.getTurno())){
+            if (tablero.Jaque(juego.getTurno())){
                 Constantes.print(Constantes.MSG_JAQUE);
             }
 
-            if (!tablero.reyRivalVivo(juego.getTurno())) {
+
+            if (!tablero.reyVivo(juego.getTurno())) {
                 Constantes.print(Constantes.MSG_GANADOR);
                 Constantes.print(Constantes.MSG_BLANCAS_NEGRAS);
                 Constantes.print(juego.turnoString());
                 sapo=false;
             }else
                 juego.setTurno(juego.getTurno() == 1 ? 0 : 1);
+
+
         }
     }
 

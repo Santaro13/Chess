@@ -158,12 +158,12 @@ public class Tablero {
         }
         return null;
     }
-    public boolean reyRivalVivo(int turnoActual) {
-        int colorRival = turnoActual == 0 ? 1 : 0;
+    public boolean reyVivo(int turnoActual) {
+        int color = turnoActual == 0 ? 1 : 0;
         for (int fila = 0; fila < 8; fila++) {
             for (int col = 0; col < 8; col++) {
                 Pieza p = tablero[fila][col];
-                if (p != null && p.getColor() == colorRival && p.getNombre().equals("rey")) {
+                if (p != null && p.getColor() == color && p.getNombre().equals("rey")) {
                     return true;
                 }
             }
@@ -184,7 +184,7 @@ public class Tablero {
     }
 
 
-    public boolean hayJaque(int colorRey) {
+    public boolean Jaque(int colorRey) {
         Posicion posRey = buscarRey(colorRey);
         if (posRey == null) return false;
         for (int fila = 0; fila < 8; fila++) {
