@@ -15,12 +15,31 @@ public class Juego {
 
     }
 
+    public String turnoString() {
+        return getTurno() == 1 ? "Blancas" : "Negras";
+    }
+
+
     public String jugada(String jugada, Tablero tablero) {
         String s = jugada.trim().toLowerCase();
+        if (s.length()!=4){
+            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
+            return null;
+        }
         char columna1 = s.charAt(0);
         char fila1 = s.charAt(1);
         char columna2 = s.charAt(2);
         char fila2 = s.charAt(3);
+        if (columna1 < 'a' || columna1 > 'h' || columna2 < 'a' || columna2 > 'h') {
+            Constantes.print(Constantes.MSG_INTRODUCE_JUGADA);
+            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
+            return null;
+        }
+        if (fila1 < '1' || fila1 > '8' || fila2 < '1' || fila2 > '8') {
+            Constantes.print(Constantes.MSG_INTRODUCE_JUGADA);
+            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
+            return null;
+        }
         int col1 = columna1 - 'a';
         int fil1 = fila1 - '1';
         int col2 = columna2 - 'a';
@@ -35,34 +54,34 @@ public class Juego {
 
 
         if (s.length() != 4) {
-            System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
-            System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
+            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
+            Constantes.print(Constantes.MSG_INTRODUCE_JUGADA);
         } else if (columna1 < 'a' || columna1 > 'h' || columna2 < 'a' || columna2 > 'h') {
-            System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
-            System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+            Constantes.print(Constantes.MSG_INTRODUCE_JUGADA);
+            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
         } else if (fila1 < '1' || fila1 > '8' || fila2 < '1' || fila2 > '8') {
-            System.out.println(Constantes.MSG_INTRODUCE_JUGADA);
-            System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+            Constantes.print(Constantes.MSG_INTRODUCE_JUGADA);
+            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
         } else if (!tablero.hayPieza(fil1, col1)) {
-            System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
         } else if (p1 instanceof Peon && movimiento.esDiagonal()) {
             Pieza pDest = tablero.devuelvePieza(posFin);
+            //Mov diag peon
             if (pDest != null && pDest.getColor() != p1.getColor()) {
-                // comida válida
                 this.mov = movimiento;
                 return s;
             } else {
-                System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+                Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
             }
         }else if (!p1.movimientoValido(movimiento)) {
-            System.out.println(Constantes.MSG_JUGADA_NO_VALIDA);
+            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
         } else if (p1.getColor() != turno) {
-            System.out.println(Constantes.MSG_TURNO_INVALIDO);
+            Constantes.print(Constantes.MSG_TURNO_INVALIDO);
         } else if (block != null) {
-            System.out.println(Constantes.MSG_HAY_PIEZA_ENTRE);
+            Constantes.print(Constantes.MSG_HAY_PIEZA_ENTRE);
         } else if (p2 != null) {
             if (p1.getColor() == p2.getColor()) {
-                System.out.println(Constantes.MSG_CANIBALISMO);
+                Constantes.print(Constantes.MSG_CANIBALISMO);
             }else{
                 this.mov = movimiento;
                 return s;
@@ -100,4 +119,6 @@ public class Juego {
     public Movimiento getMovimiento() {
         return mov;
     }
+
+
 }

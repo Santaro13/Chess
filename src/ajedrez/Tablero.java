@@ -6,7 +6,6 @@ public class Tablero {
     Pieza[][] tablero = new Pieza[8][8];
 
 
-
     public Tablero() {
         //vacío
         for (int fila = 0; fila < 8; fila++) {
@@ -44,10 +43,6 @@ public class Tablero {
         for (int columna = 0; columna < 8; columna++) {
             tablero[6][columna] = new Peon(0);
         }
-    }
-
-    public static Tablero getInstance() {
-        return new Tablero();
     }
 
 
@@ -105,7 +100,6 @@ public class Tablero {
         Posicion destino = mov.posFinal;
 
 
-
         Pieza pieza1 = tablero[origen.getFila()][origen.getColumna()];
         ponPieza(pieza1, destino);
         quitaPieza(origen.getFila(), origen.getColumna());
@@ -142,7 +136,7 @@ public class Tablero {
                 if (hayPieza(fila, col)) {
                     return devuelvePieza(fila, col);
                 }
-        }else if (mov.esDiagonal()) {
+        } else if (mov.esDiagonal()) {
             int fila = origen.getFila();
             int col = origen.getColumna();
             int filaFin = destino.getFila();
@@ -164,5 +158,53 @@ public class Tablero {
         }
         return null;
     }
+    public boolean reyRivalVivo(int turnoActual) {
+        int colorRival = turnoActual == 0 ? 1 : 0;
+        for (int fila = 0; fila < 8; fila++) {
+            for (int col = 0; col < 8; col++) {
+                Pieza p = tablero[fila][col];
+                if (p != null && p.getColor() == colorRival && p.getNombre().equals("rey")) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+    private Posicion buscarRey(int colorRey) {
+        for (int fila = 0; fila < 8; fila++) {
+            for (int col = 0; col < 8; col++) {
+                Pieza p = tablero[fila][col];
+                if (p != null && p instanceof Rey && p.getColor() == colorRey) {
+                    return new Posicion(fila, col);
+                }
+            }
+        }
+        return null;
+    }
+
+
+    public boolean hayJaque(int colorRey) {
+        Posicion posRey = buscarRey(colorRey);
+        if (posRey == null) return false;
+        for (int fila = 0; fila < 8; fila++) {
+            for (int col = 0; col < 8; col++) {
+                Pieza p = tablero[fila][col];
+
+                if (p != null && p.getColor() != colorRey) {
+                    Movimiento mov = new Movimiento(new Posicion(fila, col), posRey);
+
+                    if (p.movimientoValido(mov)) {
+                        if (!(p instanceof Caballo)) {
+                            if (hayPiezaEntre(mov) != null) continue;
+                        }
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }
+
+

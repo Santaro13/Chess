@@ -81,7 +81,5 @@ public class Movimiento {
                 '}';
     }
 
-    public Tablero getTablero() {
-        return Tablero.getInstance();
-    }
+
 }

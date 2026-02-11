@@ -58,23 +58,3 @@ public abstract class Pieza {
 
 
 }
-/* public char pintarPieza(String nombre, int color) {
-        switch (nombre.toLowerCase()) {
-            case "rey":
-                return color == 0 ? '♔' : '♚';
-            case "dama":
-                return color == 0 ? '♕' : '♛';
-            case "torre":
-                return color == 0 ? '♖' : '♜';
-            case "alfil":
-                return color == 0 ? '♗' : '♝';
-            case "caballo":
-                return color == 0 ? '♘' : '♞';
-            case "peon":
-                return color == 0 ? '♙' : '♟';
-            default:
-                return '?';
-
-        }
-
- */
