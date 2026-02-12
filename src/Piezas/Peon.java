@@ -23,7 +23,6 @@ public class Peon extends Pieza {
             }
 
         }
-
         if (getColor() == 0) {
             if (saltov >= 0) return false;
             if (posIni.getFila() == 6 && mov.esVertical() && (saltov == -1 || saltov == -2)) {

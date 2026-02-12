@@ -74,8 +74,11 @@ public class Tablero {
     }
 
     public boolean hayPieza(Posicion pos) {
-
-        return pos != null;
+        if (pos == null) return false;
+        int f = pos.getFila();
+        int c = pos.getColumna();
+        if (f < 0 || f > 7 || c < 0 || c > 7) return false;
+        return tablero[f][c] != null;
     }
 
     public void ponPieza(Pieza figura, int fila, int columna) {
@@ -119,6 +122,18 @@ public class Tablero {
     public Pieza hayPiezaEntre(Movimiento mov) {
         Posicion origen = mov.posInicial;
         Posicion destino = mov.posFinal;
+        Pieza p = tablero[origen.getFila()][origen.getColumna()];
+
+        if (mov.esVertical()&&p instanceof Peon){
+            int col = origen.getColumna();
+            int filaIn = Math.min(origen.getFila(), destino.getFila());
+            int filaFin = Math.max(origen.getFila(), destino.getFila());
+            for (int fila = filaIn + 1; fila <= filaFin; fila++) {
+                if (hayPieza(fila, col)) {
+                    return devuelvePieza(fila, col);
+                }
+            }
+        }
         if (mov.esVertical()) {
             int col = origen.getColumna();
             int filaIn = Math.min(origen.getFila(), destino.getFila());
@@ -144,10 +159,8 @@ public class Tablero {
 
             int df = (filaFin - fila) > 0 ? 1 : -1;
             int dc = (colFin - col) > 0 ? 1 : -1;
-
             fila += df;
             col += dc;
-
             while (fila != filaFin && col != colFin) {
                 if (hayPieza(fila, col)) {
                     return devuelvePieza(fila, col);
@@ -195,7 +208,11 @@ public class Tablero {
                     Movimiento mov = new Movimiento(new Posicion(fila, col), posRey);
 
                     if (p.movimientoValido(mov)) {
-                        if (!(p instanceof Caballo)) {
+                        if (p instanceof Peon) {
+                        int df = Math.abs(fila - posRey.getFila());
+                        int dc = Math.abs(col - posRey.getColumna());
+                        if (!(df == 1 && dc == 1)) continue;
+                    } else if (!(p instanceof Caballo)) {
                             if (hayPiezaEntre(mov) != null) continue;
                         }
                         return true;
