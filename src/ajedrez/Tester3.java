@@ -34,7 +34,6 @@ public class Tester3 {
 
             if (mov != null) {
                 tablero.moverPieza(juego.getMovimiento());
-                // no gestionamos la promoción aquí; lo harás tú manualmente si necesitas
                 juego.setTurno(juego.getTurno() == 1 ? 0 : 1);
             }
         }

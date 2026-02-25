@@ -74,8 +74,7 @@ public class Tablero {
     }
 
     public boolean hayPieza(Posicion pos) {
-
-        return pos != null;
+        return tablero[pos.getFila()][pos.getColumna()] != null;
     }
 
     public void ponPieza(Pieza figura, int fila, int columna) {
@@ -175,7 +174,7 @@ public class Tablero {
         for (int fila = 0; fila < 8; fila++) {
             for (int col = 0; col < 8; col++) {
                 Pieza p = tablero[fila][col];
-                if (p != null && p instanceof Rey && p.getColor() == colorRey) {
+                if (p instanceof Rey && p.getColor() == colorRey) {
                     return new Posicion(fila, col);
                 }
             }
@@ -205,6 +204,47 @@ public class Tablero {
         }
         return false;
     }
+
+
+
+    public boolean hayJaqueMate(int colorRey) {
+        if (!hayJaque(colorRey)) return false;
+
+        for (int fila = 0; fila < 8; fila++) {
+            for (int col = 0; col < 8; col++) {
+                Pieza p = tablero[fila][col];
+
+                if (p != null && p.getColor() == colorRey) {
+                    for (int f = 0; f < 8; f++) {
+                        for (int c = 0; c < 8; c++) {
+                            Movimiento mov = new Movimiento(new Posicion(fila, col), new Posicion(f, c));
+                            if (p.movimientoValido(mov)) {
+                                if (!(p instanceof Caballo)) {
+                                    if (hayPiezaEntre(mov) != null) continue;
+                                }
+                                // sim
+                                Pieza capturada = devuelvePieza(f, c);
+                                moverPieza(mov);
+                                boolean sigueEnJaque = hayJaque(colorRey);
+
+                                // deshacer movimiento
+                                ponPieza(p, fila, col);
+                                ponPieza(capturada, f, c);
+                                if (!sigueEnJaque) {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+
+
 }
 
 

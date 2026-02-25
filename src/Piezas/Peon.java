@@ -13,6 +13,7 @@ public class Peon extends Pieza {
         Posicion posFin = mov.getPosFinal();
         int saltov = mov.saltoVertical();
         int saltod = mov.saltoDiagonal();
+
         if (getColor() == 1) {
             if (saltov <= 0) return false;
             if (posIni.getFila() == 1 && mov.esVertical() && (saltov == 1 || saltov == 2)) {

@@ -32,13 +32,11 @@ public class Juego {
         char fila2 = s.charAt(3);
         if (columna1 < 'a' || columna1 > 'h' || columna2 < 'a' || columna2 > 'h') {
             Constantes.print(Constantes.MSG_INTRODUCE_JUGADA);
-            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
-            return null;
+            return Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
         }
         if (fila1 < '1' || fila1 > '8' || fila2 < '1' || fila2 > '8') {
             Constantes.print(Constantes.MSG_INTRODUCE_JUGADA);
-            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
-            return null;
+            return Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
         }
         int col1 = columna1 - 'a';
         int fil1 = fila1 - '1';
@@ -53,16 +51,8 @@ public class Juego {
         Pieza block = tablero.hayPiezaEntre(movimiento);
 
 
-        if (s.length() != 4) {
-            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
-            Constantes.print(Constantes.MSG_INTRODUCE_JUGADA);
-        } else if (columna1 < 'a' || columna1 > 'h' || columna2 < 'a' || columna2 > 'h') {
-            Constantes.print(Constantes.MSG_INTRODUCE_JUGADA);
-            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
-        } else if (fila1 < '1' || fila1 > '8' || fila2 < '1' || fila2 > '8') {
-            Constantes.print(Constantes.MSG_INTRODUCE_JUGADA);
-            Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
-        } else if (!tablero.hayPieza(fil1, col1)) {
+
+        if (!tablero.hayPieza(fil1, col1)) {
             Constantes.print(Constantes.MSG_JUGADA_NO_VALIDA);
         } else if (p1 instanceof Peon && movimiento.esDiagonal()) {
             Pieza pDest = tablero.devuelvePieza(posFin);
